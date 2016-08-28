@@ -16,7 +16,8 @@ function browserifyPlugin (options) {
       var outFname = fname.replace(/\.browserify\.js$/, '.js')
 
       // Get browserify options
-      var bOptions = require(join(ms.source(), fname))
+      var fullpath = join(ms.source(), fname)
+      var bOptions = require(fullpath)
 
       // Invoke browserify
       var result = doBrowserify(bOptions, options || {})
