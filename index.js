@@ -15,8 +15,10 @@ function browserifyPlugin (options) {
       if (!/\.browserify\.js$/.test(fname)) return promises
       var outFname = fname.replace(/\.browserify\.js$/, '.js')
 
-      // Get browserify options
+      // Get browserify options. Make sure the cache is cleared for it
+      // in the case of multiple builds per run (eg, metalsmith-start)
       var fullpath = join(ms.source(), fname)
+      if (require.cache) delete require.cache[require.resolve(fullpath)]
       var bOptions = require(fullpath)
 
       // Invoke browserify
