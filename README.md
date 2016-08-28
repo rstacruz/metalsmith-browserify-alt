@@ -4,6 +4,8 @@
 
 This plugin lets you use [Browserify] to compile JavaScript for your [Metalsmith] sites.
 
+[![Status](https://travis-ci.org/rstacruz/metalsmith-browserify-alt.svg?branch=master)](https://travis-ci.org/rstacruz/metalsmith-browserify-alt "See test builds")
+
 <br>
 
 ## Installation
