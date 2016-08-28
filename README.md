@@ -139,8 +139,7 @@ if (module.parent) {
 
 This package is an alternative to [metalsmith-browserify]. Unlike that plugin:
 
-- This allows you to configure browserify bundles in Metalsmith source files rather than in metalsmith.js.
-- This is compatible with `metalsmith.json`.
+- You can configure browserify bundles in Metalsmith source files rather than in metalsmith.js.
 - You may also have full programmatic control over `browserify()`.
 
 [metalsmith-browserify]: https://www.npmjs.com/package/metalsmith-browserify
