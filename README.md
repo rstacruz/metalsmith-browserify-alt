@@ -19,43 +19,42 @@ npm install --save --save-exact metalsmith-browserify-alt browserify
 ## Usage
 
 0. Add the `metalsmith-browserify-alt` plugin to your *metalsmith.js* or *metalsmith.json*.
-	
-	```js
-	/* metalsmith.json */
 
-	{
-	  "source": "./src",
-	  "destination": "./public",
-	  "plugins": {
-	    "metalsmith-sense-browserify": {}
-	  }
-	}
-	```
-	
+  ```js
+  /* metalsmith.json */
+
+  {
+    "source": "./src",
+    "destination": "./public",
+    "plugins": {
+      "metalsmith-sense-browserify": {}
+    }
+  }
+  ```
+
 0. In your source directory, create a file named `[NAME].browserify.js` (replace *[NAME]* with your choice of filename). It will be compiled into `[NAME].js`.
-	
-		  
-	```js
-	/* src/app.browserify.js */
-	
-	// This will compile into `app.js`.
-	// Below are the options to be passed onto Browserify.
-	// The `entries` option defines what input file will be parsed.
-	
-	module.exports = {
-	  entries: [ __dirname + '/../js/app.js' ],
-	  transform: [ 'babelify' ]
-	}
-	```
-	</details>
-	
+
+  ```js
+  /* src/app.browserify.js */
+
+  // This will compile into `app.js`.
+  // Below are the options to be passed onto Browserify.
+  // The `entries` option defines what input file will be parsed.
+
+  module.exports = {
+    entries: [ __dirname + '/../js/app.js' ],
+    transform: [ 'babelify' ]
+  }
+  ```
+  </details>
+
 0. The actual file to be compiled by Browserify is defined in the `entries` option above. (It's recommended that these files not be placed inside the Metalsmith source directory to avoid being compiled on its own.)
-	
-	```js
-	/* js/app.js */
-	
-	alert('Hello from browserify!')
-	```
+
+  ```js
+  /* js/app.js */
+
+  alert('Hello from browserify!')
+  ```
 
 <br>
 
@@ -67,7 +66,7 @@ Returns a Metalsmith plugin for compiling `*.browserify.js` files via Browserify
 
 ### Compiling files
 
-The `*.browserify.js` files are expected to be files that will return an object. This object will be passed onto `browserify(...)`.
+The `*.browserify.js` files are expected to be files that will return an Object or a Function. If it's an Object, it will be passed onto `browserify(...)`. If it's a function, it's assumed to return a `browserify()` instance.
 
 ```js
 // src/example.browserify.js
@@ -136,10 +135,28 @@ if (module.parent) {
 
 ## Prior art
 
-This package is an alternative to [metalsmith-browserify]. It allows you to configure browserify bundles in Metalsmith source files rather than in metalsmith.js. It's also compatible with `metalsmith.json`.
+This package is an alternative to [metalsmith-browserify]. Unlike that plugin:
+
+- This allows you to configure browserify bundles in Metalsmith source files rather than in metalsmith.js.
+- This is compatible with `metalsmith.json`.
+- You may also have full programmatic control over `browserify()`.
 
 [metalsmith-browserify]: https://www.npmjs.com/package/metalsmith-browserify
 [watchify]: https://github.com/substack/watchify
 [browserify]: http://browserify.org/
 [Metalsmith]: http://metalsmith.io/
 [metalsmith-start]: https://www.npmjs.com/package/metalsmith-start
+
+<br>
+
+## Thanks
+
+**metalsmith-browserify-alt** © 2016+, Rico Sta. Cruz. Released under the [MIT] License.<br>
+Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
+
+> [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
+> GitHub [@rstacruz](https://github.com/rstacruz) &nbsp;&middot;&nbsp;
+> Twitter [@rstacruz](https://twitter.com/rstacruz)
+
+[MIT]: http://mit-license.org/
+[contributors]: http://github.com/rstacruz/metalsmith-browserify-alt/contributors
