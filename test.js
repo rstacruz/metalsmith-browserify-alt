@@ -29,3 +29,18 @@ test('functions', function (t) {
     t.end()
   })
 })
+
+test('node modules', function (t) {
+  var ms = require('./test/node-module-example/metalsmith')
+  t.plan(1)
+
+  ms.build(function (err) {
+    if (err) return t.end(err)
+
+    var data = readFileSync(join(ms.destination(), 'app.js'), 'utf-8')
+
+    // header from object-assign
+    t.assert(/Sindre Sorhus/.test(data), 'browserify bundle')
+    t.end()
+  })
+})
